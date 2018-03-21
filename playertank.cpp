@@ -6,3 +6,18 @@ PlayerTank::PlayerTank(shared_ptr<ObserverPlayer> observerIn, int xIn, int yIn, 
     type = PLAYER;
     visualizasion = 'T';
 }
+
+void PlayerTank::hit()
+{
+    --healthPoints;
+    if (healthPoints < 1)
+    {
+        nextAction = A_DESTROY;
+        observer.get()->updateGameOver();
+    }
+}
+
+void PlayerTank::notifyHealthPoints()
+{
+    observer.get()->updateHealthPoints( getHealthPoints() );
+}

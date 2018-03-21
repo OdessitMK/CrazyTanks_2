@@ -15,7 +15,7 @@ void AiInput::initAiInput(shared_ptr<PlayerTank> playerTankIn)
     playerTank = playerTankIn;
 }
 
-ACTION AiInput::GetAction(shared_ptr<Object> objIn)
+ACTION AiInput::getAction(shared_ptr<Object> objIn)
 {
     ACTION returnAction = objIn.get()->getAction();
     switch ( returnAction )

@@ -12,6 +12,7 @@ public:
     void notifyEnemyCounterIncrease();
     void notifyEnemyCounterDecrease();
     void notifyGameOver();
+    virtual void notifyHealthPoints(){}
 };
 
 #endif // SUBJECTOFOBSERVATION_H

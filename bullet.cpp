@@ -1,6 +1,6 @@
 #include "bullet.h"
 
-Bullet::Bullet(shared_ptr<Object> owner, int xIn, int yIn):Object(xIn, yIn)
+Bullet::Bullet(shared_ptr<Object> owner):Object(0, 0)
 {
     if ( owner.get()->getType() == AI )
     {
@@ -16,13 +16,13 @@ Bullet::Bullet(shared_ptr<Object> owner, int xIn, int yIn):Object(xIn, yIn)
     direction = owner.get()->getDirection();
     switch(direction)
     {
-    case UP: nextAction = A_UP;
+    case UP: nextAction = A_UP;  coordX = owner.get()->getX(); coordY = owner.get()->getY() - 1;
         break;
-    case DOWN: nextAction = A_DOWN;
+    case DOWN: nextAction = A_DOWN; coordX = owner.get()->getX(); coordY = owner.get()->getY() + 1;
         break;
-    case RIGHT: nextAction = A_RIGHT;
+    case RIGHT: nextAction = A_RIGHT; coordX = owner.get()->getX() + 1; coordY = owner.get()->getY();
         break;
-    case LEFT: nextAction = A_LEFT;
+    case LEFT: nextAction = A_LEFT; coordX = owner.get()->getX() - 1; coordY = owner.get()->getY();
         break;
     }
 }

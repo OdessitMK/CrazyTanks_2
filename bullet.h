@@ -6,7 +6,7 @@
 class Bullet : public Object
 {
 public:
-    Bullet( shared_ptr<Object> owner, int xIn, int yIn);
+    Bullet( shared_ptr<Object> owner);
 };
 
 #endif // BULLET_H

@@ -6,6 +6,7 @@
 class ObserverPlayer : public PlayerInput
 {
 protected:
+    int healthPoints;
     int enemyCounter;
     int score;
     bool gameOver;
@@ -14,7 +15,9 @@ public:
     int getScore();
     void updateEnemyCounterIncrease();
     void updateEnemyCounterDecrease();
+    void updateHealthPoints(int healthPointsIn);
     void updateGameOver();
+    int getHealthPoints();
 };
 
 #endif // OBSERVERPLAYER_H

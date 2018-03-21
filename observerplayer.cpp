@@ -21,7 +21,17 @@ void ObserverPlayer::updateEnemyCounterDecrease()
     ++score;
 }
 
+void ObserverPlayer::updateHealthPoints(int healthPointsIn)
+{
+    healthPoints = healthPointsIn;
+}
+
 void ObserverPlayer::updateGameOver()
 {
     gameOver = true;
+}
+
+int ObserverPlayer::getHealthPoints()
+{
+    return healthPoints;
 }

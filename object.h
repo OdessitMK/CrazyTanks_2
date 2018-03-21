@@ -58,7 +58,7 @@ public:
     int getHealthPoints();
     void hit();
     ACTION getAction();
-    virtual void changeAction( ACTION actionIn );
+    void changeAction( ACTION actionIn );
     void collision(shared_ptr<Object> objIn);
 
     //char operator<<( Object &obj );
