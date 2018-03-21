@@ -59,7 +59,7 @@ void ActiveObjects::setup()
     addObject(playerTank);
 
     //Initialise AI with playerTank
-    aiInput.initAiInput(playerTank);
+    inputInterface.aiInput.initAiInput(playerTank);
 
     //Enemy tanks
     for ( int i = 0; i < 3;i++)
@@ -103,13 +103,9 @@ void ActiveObjects::iterateActive(bool input)
         advance( itt, 1 );
         if ( input )
         {
-            if ( it->get()->getType() == PLAYER  )
+            if ( ( it->get()->getType() == PLAYER ) || ( it->get()->getType() == AI ) )
             {
-                it->get()->changeAction( playerInput.getAction() );
-            }
-            else if (it->get()->getType() == AI)
-            {
-                it->get()->changeAction( aiInput.getAction( *it ) );
+                it->get()->changeAction( inputInterface.getAction( *it ) );
             }
         }
         switch ( it->get()->getAction() )
@@ -137,130 +133,4 @@ void ActiveObjects::iterateActive(bool input)
         }
         it = itt;
     }
-
-  /*  //Iterate NON-movement ralated actions
-    auto it = listOfObjects.begin();
-    while (it != listOfObjects.end())
-    {
-        auto itt = it;
-        advance( itt, 1 );
-        if ( it->get()->getType() == PLAYER )
-        {
-            switch ( it->get()->getAction() )
-            {
-                case A_HIT: it->get()->hit(); if ( it->get()->getAction() == A_DESTROY )
-                    break;
-                case A_DESTROY: it->get()->GameOver();
-                    break;
-                case A_STOP:
-                    break;
-                default:
-                    break;
-            }
-
-        }
-        else //AI
-        {
-            switch ( it->get()->getAction() )
-            {
-                case A_HIT:
-                    it->get()->hit();
-                    if ( it->get()->getAction() == A_DESTROY )
-                    {
-                        if ( it->get()->getType() == AI ) listOfObjects.front().get()->AddScore();
-                        battlefield.get()->DeleteObject( it->get()->GetX(), it->get()->GetY() );
-                        listOfObjects.erase(it);
-                    }
-                    break;
-                case A_DESTROY:
-                    if ( it->get()->getType() == AI ) listOfObjects.front().get()->AddScore();
-                    battlefield.get()->DeleteObject( it->get()->GetX(), it->get()->GetY() );
-                    listOfObjects.erase(it);
-                    break;
-                case A_STOP:
-                    break;
-                default:
-                    break;
-            }
-        }
-        it = itt;
-    }
-
-    //Iterate movement ralated actions
-    it = listOfObjects.begin();
-    while (it != listOfObjects.end())
-    {
-        auto itt = it;
-        advance( itt, 1 );
-        if ( it->get()->getType() == PLAYER  )
-        {
-            it->get()->ChangeAction( playerInput.GetAction() );
-        }
-        else if (it->get()->getType() != AI_BULLET && it->get()->GetWho() != PLAYER_BULLET)
-        {
-            it->get()->ChangeAction( aiInput.GetAction( *(it->get()) ) );
-        }
-        switch ( it->get()->GetAction() )
-        {
-            case A_UP:    battlefield.get()->MoveObject( it->get()->GetX(), it->get()->GetY(), it->get()->GetX(), it->get()->GetY() - 1 ); it->get()->ChangeDirection(UP);
-                break;
-            case A_DOWN:  battlefield.get()->MoveObject( it->get()->GetX(), it->get()->GetY(), it->get()->GetX(), it->get()->GetY() + 1 ); it->get()->ChangeDirection(DOWN);
-                break;
-            case A_LEFT:  battlefield.get()->MoveObject( it->get()->GetX(), it->get()->GetY(), it->get()->GetX() - 1, it->get()->GetY() ); it->get()->ChangeDirection(LEFT);
-                break;
-            case A_RIGHT: battlefield.get()->MoveObject( it->get()->GetX(), it->get()->GetY(), it->get()->GetX() + 1, it->get()->GetY() ); it->get()->ChangeDirection(RIGHT);
-                break;
-            case A_SHOOT:
-                {
-                    int bulletX, bulletY;
-                    switch (it->get()->GetDirection() )
-                    {
-                    case UP:    bulletX = it->get()->GetX(); bulletY = it->get()->GetY() - 1;
-                        break;
-                    case DOWN:  bulletX = it->get()->GetX(); bulletY = it->get()->GetY() + 1;
-                        break;
-                    case LEFT:  bulletX = it->get()->GetX() - 1; bulletY = it->get()->GetY();
-                        break;
-                    case RIGHT: bulletX = it->get()->GetX() + 1; bulletY = it->get()->GetY();
-                        break;
-                    }
-                    if ( it->get()->getType() == PLAYER  )
-                    {
-                        shared_ptr<Bullet> bullet( new Bullet( bulletX, bulletY, 1, '*', it->get()->GetDirection(), PLAYER_BULLET) );
-                        this->Add( bullet );
-                    }
-                    else
-                    {
-                        shared_ptr<Bullet> bullet( new Bullet( bulletX, bulletY, 1, 'o', it->get()->GetDirection(), AI_BULLET) );
-                        this->Add( bullet );
-                    }
-                    break;
-                }
-            case A_STOP:
-                break;
-            case A_HIT:
-                it->get()->Hit();
-                if ( it->get()->GetAction() == A_DESTROY )
-                {
-                    if ( it->get()->getType() == AI ) listOfObjects.front().get()->AddScore();
-                    battlefield.get()->DeleteObject( it->get()->GetX(), it->get()->GetY() );
-                    listOfObjects.erase(it);
-                }
-                break;
-            case A_DESTROY:
-                if ( it->get()->getType() == AI ) listOfObjects.front().get()->AddScore();
-                battlefield.get()->DeleteObject( it->get()->getX(), it->get()->GetY() );
-                listOfObjects.erase(it);
-                break;
-            default:
-                break;
-        }
-        it = itt;
-    }
-
-    {
-        cout << "-----VICTORY-----" << endl << "FINAL SCORE: " << listOfObjects.front().get()->GetScore();
-        listOfObjects.front().get()->GameOver();
-    }
-    return true; */
 }

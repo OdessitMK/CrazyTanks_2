@@ -16,15 +16,16 @@ void Battlefield::createBorders()
     }
 }
 
-Battlefield::Battlefield(int heightIn, int widthIn)
+Battlefield::Battlefield(int heightIn, int widthIn):height(heightIn), width(widthIn)
 {
-    for (int y = 0; y < heightIn; y++)
+    for (int y = 0; y < height; y++)
     {
-        auto newVec = new std::vector< shared_ptr<Object> >; //"to implement" reserve( size_type new_cap );
-        for (int x = 0; x < widthIn; x++)
+        auto newVec = new vector< shared_ptr<Object> >; //"to implement" reserve( size_type new_cap );
+        for (int x = 0; x < width; x++)
             newVec->push_back(nullptr);
         field.push_back(*newVec);
     }
+    createBorders();
 }
 
 int Battlefield::getHeight()

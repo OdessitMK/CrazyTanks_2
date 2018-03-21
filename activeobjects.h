@@ -3,12 +3,10 @@
 
 #include <memory>
 #include <list>
-//#include "playerinput.h"
-//#include "aiinput.h"
 
 #include "battlefield.h"
 #include "observerplayer.h"
-#include "aiinput.h"
+#include "inputinterface.h"
 
 using namespace std;
 
@@ -18,8 +16,7 @@ protected:
     list <shared_ptr<Object> > listOfObjects;
     shared_ptr<Battlefield> battlefield;
     shared_ptr<ObserverPlayer> observer;
-    AiInput aiInput;
-    PlayerInput playerInput;
+    InputInterface inputInterface;
 public:
     ActiveObjects( shared_ptr<Battlefield> battlefieldIn, shared_ptr<ObserverPlayer> observerIn );
     bool nearCheck(int x, int y, int distance = 3);

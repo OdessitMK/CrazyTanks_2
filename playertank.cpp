@@ -5,11 +5,14 @@ PlayerTank::PlayerTank(shared_ptr<ObserverPlayer> observerIn, int xIn, int yIn, 
 {
     type = PLAYER;
     visualizasion = 'T';
+    healthPoints = 3;
+    this->notifyHealthPoints();
 }
 
 void PlayerTank::hit()
 {
     --healthPoints;
+    this->notifyHealthPoints();
     if (healthPoints < 1)
     {
         nextAction = A_DESTROY;

@@ -10,6 +10,11 @@ int ObserverPlayer::getScore()
     return score;
 }
 
+bool ObserverPlayer::getGameOver()
+{
+    return gameOver;
+}
+
 void ObserverPlayer::updateEnemyCounterIncrease()
 {
     ++enemyCounter;
@@ -19,6 +24,7 @@ void ObserverPlayer::updateEnemyCounterDecrease()
 {
     --enemyCounter;
     ++score;
+    if ( enemyCounter < 1 ) updateGameOver();
 }
 
 void ObserverPlayer::updateHealthPoints(int healthPointsIn)

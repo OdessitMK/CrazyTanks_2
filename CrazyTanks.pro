@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     playertank.cpp \
     enemytank.cpp \
     bullet.cpp \
-    renderer.cpp
+    renderer.cpp \
+    inputinterface.cpp
 
 HEADERS += \
     object.h \
@@ -42,4 +43,5 @@ HEADERS += \
     playertank.h \
     enemytank.h \
     bullet.h \
-    renderer.h
+    renderer.h \
+    inputinterface.h

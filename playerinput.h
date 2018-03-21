@@ -4,13 +4,14 @@
 #include "object.h"
 
 
+
 class PlayerInput
 {
 protected:
     ACTION action;
 public:
     PlayerInput();
-    ACTION getAction();
+    ACTION getAction(shared_ptr<Object> playerTankIn);
     void takeInput();
 
 };

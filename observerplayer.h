@@ -13,6 +13,7 @@ protected:
 public:
     ObserverPlayer();
     int getScore();
+    bool getGameOver();
     void updateEnemyCounterIncrease();
     void updateEnemyCounterDecrease();
     void updateHealthPoints(int healthPointsIn);

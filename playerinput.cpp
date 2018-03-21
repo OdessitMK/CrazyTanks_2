@@ -3,16 +3,18 @@
 
 #include "playerinput.h"
 
-PlayerInput::PlayerInput()
+PlayerInput::PlayerInput():action(A_STOP)
 {
 
 }
 
-ACTION PlayerInput::getAction()
+ACTION PlayerInput::getAction(shared_ptr<Object> playerTankIn)
 {
-    ACTION act = action;
-    action = A_STOP;
-    return act;
+    takeInput();
+
+    if ( (playerTankIn.get()->getAction() != A_HIT) || (playerTankIn.get()->getAction() != A_DESTROY) )
+    { ACTION act = action; action = A_STOP; return act; }
+    else return playerTankIn.get()->getAction();
 }
 
 void PlayerInput::takeInput()

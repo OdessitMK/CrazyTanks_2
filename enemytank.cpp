@@ -5,6 +5,7 @@ EnemyTank::EnemyTank(shared_ptr<ObserverPlayer> observerIn, int xIn, int yIn, in
     type = AI;
     visualizasion = 'O';
     observer.get()->updateEnemyCounterIncrease();
+    healthPoints = 1;
 }
 
 void EnemyTank::hit()
