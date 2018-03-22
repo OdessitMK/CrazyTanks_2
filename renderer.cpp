@@ -17,4 +17,5 @@ void Renderer::DrawInterface()
     battlefield.get()->drawField();
     cout << endl << " SCORE: " << player.get()->getScore() << " HP: " << player.get()->getHealthPoints() << endl;
     //cout << "-----VICTORY-----" << endl;
+    cout << endl << " Enemies: " << player.get()->getEnemyCounter();
 }

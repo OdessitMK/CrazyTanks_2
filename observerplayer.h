@@ -11,6 +11,7 @@ protected:
 public:
     ObserverPlayer();
     int getScore();
+    int getEnemyCounter();
     bool getGameOver();
     void updateEnemyCounterIncrease();
     void updateEnemyCounterDecrease();

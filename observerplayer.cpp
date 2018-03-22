@@ -10,6 +10,11 @@ int ObserverPlayer::getScore()
     return score;
 }
 
+int ObserverPlayer::getEnemyCounter()
+{
+    return enemyCounter;
+}
+
 bool ObserverPlayer::getGameOver()
 {
     return gameOver;
