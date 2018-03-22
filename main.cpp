@@ -31,6 +31,8 @@ int main()
         }
     }
 
-    std::cout<< std::endl <<"---GAME OVER---"<< std::endl;
+    cout<< endl <<"---GAME OVER---"<< endl;
+    int x;
+    cin>>x;
     return 0;
 }
