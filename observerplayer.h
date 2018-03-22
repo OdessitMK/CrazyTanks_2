@@ -8,11 +8,12 @@ protected:
     int enemyCounter;
     int score;
     bool gameOver;
+    bool victory;
 public:
     ObserverPlayer();
     int getScore();
-    int getEnemyCounter();
     bool getGameOver();
+    bool getVictory();
     void updateEnemyCounterIncrease();
     void updateEnemyCounterDecrease();
     void updateHealthPoints(int healthPointsIn);

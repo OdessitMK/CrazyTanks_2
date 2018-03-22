@@ -1,6 +1,6 @@
 #include "renderer.h"
 #include "windows.h"
-#include "ctime"
+
 #include "iostream"
 
 
@@ -12,10 +12,10 @@ Renderer::Renderer(shared_ptr<Battlefield> battlefieldIn, shared_ptr<ObserverPla
 void Renderer::DrawInterface()
 {
     system("CLS");
-    auto timer = clock();
+    timer = clock();
     cout <<"Game time: "<< (static_cast<long int>(timer)) / CLOCKS_PER_SEC / 60 << " minutes " << (static_cast<long int>(timer)) / CLOCKS_PER_SEC % 60 << " seconds";
     battlefield.get()->drawField();
     cout << endl << " SCORE: " << player.get()->getScore() << " HP: " << player.get()->getHealthPoints() << endl;
-    //cout << "-----VICTORY-----" << endl;
-    cout << endl << " Enemies: " << player.get()->getEnemyCounter();
+    if ( player.get()->getVictory() == true )
+        cout << "-----VICTORY-----" << endl;
 }
