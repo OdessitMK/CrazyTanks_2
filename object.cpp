@@ -2,7 +2,7 @@
 
 const ACTION Object::collisionTable[6][6] = {{A_STOP,A_STOP,A_STOP,A_STOP,A_STOP,A_HIT},
                                              {A_STOP,A_STOP,A_STOP,A_STOP,A_HIT,A_STOP},
-                                             {A_STOP,A_STOP,A_STOP,A_STOP,A_HIT,A_HIT},
+                                             {A_CONTINUE,A_CONTINUE,A_STOP,A_STOP,A_HIT,A_HIT},
                                              {A_STOP,A_HIT,A_STOP,A_STOP,A_STOP,A_HIT},
                                              {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},
                                              {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},};
@@ -74,5 +74,6 @@ void Object::changeAction(ACTION actionIn)
 
 void Object::collision(shared_ptr<Object> objIn)
 {
-    changeAction( Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] );
+    if (Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] != A_CONTINUE)
+        changeAction( Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] );
 }

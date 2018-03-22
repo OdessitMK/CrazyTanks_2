@@ -14,7 +14,8 @@ enum ACTION
     A_SHOOT,
     A_DESTROY,
     A_STOP,
-    A_HIT
+    A_HIT,
+    A_CONTINUE
 };
 
 enum DIRECTION
