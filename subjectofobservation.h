@@ -2,6 +2,9 @@
 #define SUBJECTOFOBSERVATION_H
 
 #include "observerplayer.h"
+#include <memory>
+
+using namespace std;
 
 class SubjectOfObservation
 {

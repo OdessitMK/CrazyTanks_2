@@ -2,6 +2,7 @@
 #define INPUTINTERFACE_H
 
 #include "aiinput.h"
+#include "playerinput.h"
 
 class InputInterface
 {

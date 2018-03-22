@@ -1,9 +1,7 @@
 #ifndef OBSERVERPLAYER_H
 #define OBSERVERPLAYER_H
 
-#include "PlayerInput.h"
-
-class ObserverPlayer : public PlayerInput
+class ObserverPlayer
 {
 protected:
     int healthPoints;

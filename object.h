@@ -57,7 +57,7 @@ public:
     void changeDirection( DIRECTION directionIn );
     int getHealthPoints();
     void hit();
-    ACTION getAction();
+    virtual ACTION getAction();
     void changeAction( ACTION actionIn );
     void collision(shared_ptr<Object> objIn);
 

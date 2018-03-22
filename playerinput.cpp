@@ -11,10 +11,10 @@ PlayerInput::PlayerInput():action(A_STOP)
 ACTION PlayerInput::getAction(shared_ptr<Object> playerTankIn)
 {
     takeInput();
-
-    if ( (playerTankIn.get()->getAction() != A_HIT) || (playerTankIn.get()->getAction() != A_DESTROY) )
+    ACTION currentAction = playerTankIn.get()->getAction();
+    if ( (currentAction != A_HIT) && (currentAction != A_DESTROY) )
     { ACTION act = action; action = A_STOP; return act; }
-    else return playerTankIn.get()->getAction();
+    else return currentAction;
 }
 
 void PlayerInput::takeInput()

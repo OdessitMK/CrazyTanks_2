@@ -61,7 +61,9 @@ void Object::hit()
 
 ACTION Object::getAction()
 {
-    return nextAction;
+    ACTION acc = nextAction;
+    nextAction = A_STOP;
+    return acc;
 }
 
 void Object::changeAction(ACTION actionIn)

@@ -34,11 +34,11 @@ void ActiveObjects::createStronghold()
 {
     int width = battlefield.get()->getWidth();
     int height = battlefield.get()->getHeight();
-    addObject( shared_ptr<Gold>( new Gold( observer, width/2, height ) ) );
+    addObject( shared_ptr<Gold>( new Gold( observer, width/2, height - 2 ) ) );
     for (int i = 0; i < 3; i++ )
     {
-        addObject( shared_ptr<Wall>( new Wall( width / 2 - 1 + i, height - 1 ) ) );
-        addObject( shared_ptr<Wall>( new Wall( width / 2 - 1 + i, height ) ) );
+        addObject( shared_ptr<Wall>( new Wall( width / 2 - 1 + i, height - 3 ) ) );
+        addObject( shared_ptr<Wall>( new Wall( width / 2 - 1 + i, height - 2 ) ) );
     }
 }
 
@@ -54,8 +54,10 @@ void ActiveObjects::setup()
     uniform_int_distribution<> dieW(3, 4);
     uniform_int_distribution<> dieTwo(1, 2);
 
+    this->createStronghold();
+
     //PlayerTank
-    shared_ptr<PlayerTank> playerTank( new PlayerTank( observer, bWidth / 2, bHeight - 3) );
+    shared_ptr<PlayerTank> playerTank( new PlayerTank( observer, bWidth / 2, bHeight - 4) );
     addObject(playerTank);
 
     //Initialise AI with playerTank

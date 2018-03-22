@@ -16,5 +16,5 @@ void Renderer::DrawInterface()
     cout <<"Game time: "<< (static_cast<long int>(timer)) / CLOCKS_PER_SEC / 60 << " minutes " << (static_cast<long int>(timer)) / CLOCKS_PER_SEC % 60 << " seconds";
     battlefield.get()->drawField();
     cout << endl << " SCORE: " << player.get()->getScore() << " HP: " << player.get()->getHealthPoints() << endl;
-    cout << "-----VICTORY-----" << endl;
+    //cout << "-----VICTORY-----" << endl;
 }

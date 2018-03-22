@@ -22,5 +22,5 @@ void PlayerTank::hit()
 
 void PlayerTank::notifyHealthPoints()
 {
-    observer.get()->updateHealthPoints( getHealthPoints() );
+    observer.get()->updateHealthPoints( this->getHealthPoints() );
 }

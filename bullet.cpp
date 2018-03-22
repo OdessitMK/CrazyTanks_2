@@ -26,3 +26,8 @@ Bullet::Bullet(shared_ptr<Object> owner):Object(0, 0)
         break;
     }
 }
+
+ACTION Bullet::getAction()
+{
+    return nextAction;
+}
