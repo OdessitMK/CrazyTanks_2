@@ -60,9 +60,6 @@ public:
     virtual ACTION getAction();
     void changeAction( ACTION actionIn );
     void collision(shared_ptr<Object> objIn);
-
-    //char operator<<( Object &obj );
-
 };
 
 #endif // OBJECT_H

@@ -1,4 +1,6 @@
 #include "subjectofobservation.h"
+#include <iostream>
+
 
 SubjectOfObservation::SubjectOfObservation(shared_ptr<ObserverPlayer> observerIn):observer(observerIn)
 {

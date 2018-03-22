@@ -61,17 +61,18 @@ void Object::hit()
 
 ACTION Object::getAction()
 {
-    ACTION acc = nextAction;
-    nextAction = A_STOP;
-    return acc;
+        ACTION acc = nextAction;
+        changeAction( A_STOP );
+        return acc;
 }
 
 void Object::changeAction(ACTION actionIn)
 {
-    nextAction = actionIn;
+    if ((nextAction != A_HIT) || (nextAction != A_DESTROY))
+    {nextAction = actionIn;}
 }
 
 void Object::collision(shared_ptr<Object> objIn)
 {
-        nextAction = Object::collisionTable[ this->getType() ][ objIn.get()->getType() ];
+    changeAction( Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] );
 }
