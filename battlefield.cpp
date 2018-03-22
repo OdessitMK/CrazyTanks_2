@@ -16,7 +16,7 @@ void Battlefield::createBorders()
     }
 }
 
-Battlefield::Battlefield(int heightIn, int widthIn):height(heightIn), width(widthIn)
+Battlefield::Battlefield(const int heightIn, const int widthIn):height(heightIn), width(widthIn)
 {
     for (int y = 0; y < height; y++)
     {
@@ -66,7 +66,7 @@ bool Battlefield::addObject(shared_ptr<Object> objIn)
     return false;
 }
 
-bool Battlefield::moveObject(int fromX, int fromY, int whereX, int whereY)
+bool Battlefield::moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY)
 {
     if (field.at( whereY ).at( whereX ) == nullptr )
     {
@@ -81,7 +81,7 @@ bool Battlefield::moveObject(int fromX, int fromY, int whereX, int whereY)
     return true;
 }
 
-void Battlefield::deleteObject(int objX, int objY)
+void Battlefield::deleteObject(const int &objX, const int &objY)
 {
     field.at( objY ).at( objX ) = nullptr;
 }

@@ -48,19 +48,19 @@ protected:
     ACTION nextAction;
     const static ACTION collisionTable[6][6];
 public:
-    Object( int xIn, int yIn, int healthPointsIn = 1, DIRECTION directionIn = UP, ACTION nextActionIn = A_STOP);
-    void move(int xIn, int yIn);
+    Object( const int &xIn, const int &yIn,const int &healthPointsIn = 1, const DIRECTION &directionIn = UP, const ACTION &nextActionIn = A_STOP);
+    void move(const int &xIn, const int &yIn);
     int getX();
     int getY();
     TYPE getType();
     char getVisualization();
     DIRECTION getDirection();
-    void changeDirection( DIRECTION directionIn );
+    void changeDirection( const DIRECTION &directionIn );
     int getHealthPoints();
     virtual void hit();
     virtual ACTION getAction();
-    void changeAction( ACTION actionIn );
-    void collision(shared_ptr<Object> objIn);
+    void changeAction( const ACTION &actionIn );
+    void collision(const shared_ptr<Object> objIn);
 };
 
 #endif // OBJECT_H

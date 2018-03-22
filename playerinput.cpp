@@ -8,13 +8,16 @@ PlayerInput::PlayerInput():action(A_STOP)
 
 }
 
-ACTION PlayerInput::getAction(shared_ptr<Object> playerTankIn)
+ACTION PlayerInput::getAction(const shared_ptr<Object> playerTankIn)
 {
     takeInput();
-    ACTION currentAction = playerTankIn.get()->getAction();
-    if ( (currentAction != A_HIT) && (currentAction != A_DESTROY) )
-    { ACTION act = action; action = A_STOP; return act; }
-    else return currentAction;
+    ACTION returnAction = playerTankIn.get()->getAction();
+    if ( (returnAction != A_HIT) && (returnAction != A_DESTROY) )
+    {
+        returnAction = action;
+        action = A_STOP;
+    }
+    return returnAction;
 }
 
 void PlayerInput::takeInput()
@@ -40,6 +43,8 @@ void PlayerInput::takeInput()
             //case 'x': gameOver = true; //exit game on press 'x'
                 //break;
             case 32: action = A_SHOOT; //spacebar
+                break;
+            default:
                 break;
         }
     }

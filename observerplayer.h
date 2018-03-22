@@ -16,7 +16,7 @@ public:
     bool getVictory();
     void updateEnemyCounterIncrease();
     void updateEnemyCounterDecrease();
-    void updateHealthPoints(int healthPointsIn);
+    void updateHealthPoints(const int &healthPointsIn);
     void updateGameOver();
     int getHealthPoints();
 };

@@ -7,10 +7,12 @@ InputInterface::InputInterface()
 
 }
 
-ACTION InputInterface::getAction(shared_ptr<Object> objIn)
+ACTION InputInterface::getAction(const shared_ptr<Object> objIn)
 {
+    ACTION returnAction;
     if ( objIn.get()->getType() == AI )
-        return aiInput.getAction(objIn);
+        returnAction = aiInput.getAction(objIn);
     else
-        return playerInput.getAction(objIn);
+        returnAction = playerInput.getAction(objIn);
+    return returnAction;
 }

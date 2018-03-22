@@ -14,7 +14,7 @@ ActiveObjects::ActiveObjects(shared_ptr<Battlefield> battlefieldIn, shared_ptr<O
 
 }
 
-bool ActiveObjects::nearCheck(int x, int y, int distance)
+bool ActiveObjects::nearCheck(const int &x, const int &y, const int &distance)
 {
     for (auto it: listOfObjects)
     {
@@ -95,7 +95,7 @@ void ActiveObjects::setup()
     }
 }
 
-void ActiveObjects::iterateActive(bool input)
+void ActiveObjects::iterateActive(const bool input)
 {
 
     auto it = listOfObjects.begin();

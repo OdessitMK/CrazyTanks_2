@@ -3,15 +3,13 @@
 
 #include "object.h"
 
-
-
 class PlayerInput
 {
 protected:
     ACTION action;
 public:
     PlayerInput();
-    ACTION getAction(shared_ptr<Object> playerTankIn);
+    ACTION getAction(const shared_ptr<Object> playerTankIn);
     void takeInput();
 
 };

@@ -19,11 +19,11 @@ protected:
     InputInterface inputInterface;
 public:
     ActiveObjects( shared_ptr<Battlefield> battlefieldIn, shared_ptr<ObserverPlayer> observerIn );
-    bool nearCheck(int x, int y, int distance = 3);
+    bool nearCheck(const int &x, const int &y, const int &distance = 3);
     void addObject(shared_ptr<Object> objIn);
     void createStronghold();
     void setup();
-    void iterateActive(bool input);
+    void iterateActive(const bool input);
 
 };
 #endif // ACTIVEOBJECTS_H

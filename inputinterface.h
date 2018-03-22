@@ -11,7 +11,7 @@ protected:
     AiInput aiInput;
     PlayerInput playerInput;
     InputInterface();
-    ACTION getAction(shared_ptr<Object> objIn);
+    ACTION getAction(const shared_ptr<Object> objIn);
 };
 
 #endif // INPUTINTERFACE_H

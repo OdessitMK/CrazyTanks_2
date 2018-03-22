@@ -11,7 +11,7 @@ protected:
 public:
     AiInput();
     void initAiInput(shared_ptr<PlayerTank> playerTankIn);
-    ACTION getAction(shared_ptr<Object> objIn);
+    ACTION getAction(const shared_ptr<Object> objIn);
 };
 
 #endif // AIINPUT_H

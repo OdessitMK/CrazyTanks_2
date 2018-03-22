@@ -1,18 +1,18 @@
 #include "object.h"
 
-const ACTION Object::collisionTable[6][6] = {{A_STOP,A_STOP,A_STOP,A_STOP,A_STOP,A_HIT},
-                                             {A_STOP,A_STOP,A_STOP,A_STOP,A_HIT,A_STOP},
-                                             {A_CONTINUE,A_CONTINUE,A_STOP,A_STOP,A_HIT,A_HIT},
-                                             {A_STOP,A_HIT,A_STOP,A_STOP,A_STOP,A_HIT},
+const ACTION Object::collisionTable[6][6] = {{A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT},
+                                             {A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT,A_STOP},
+                                             {A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT,A_HIT},
+                                             {A_CONTINUE,A_HIT,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT},
                                              {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},
                                              {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},};
 
-Object::Object(int xIn, int yIn, int healthPointsIn, DIRECTION directionIn, ACTION nextActionIn):coordX(xIn),coordY(yIn),healthPoints(healthPointsIn),direction(directionIn),nextAction(nextActionIn)
+Object::Object(const int &xIn, const int &yIn, const int &healthPointsIn, const DIRECTION &directionIn, const ACTION &nextActionIn):coordX(xIn),coordY(yIn),healthPoints(healthPointsIn),direction(directionIn),nextAction(nextActionIn)
 {
 
 }
 
-void Object::move(int xIn, int yIn)
+void Object::move(const int &xIn, const int &yIn)
 {
     coordX = xIn;
     coordY = yIn;
@@ -43,7 +43,7 @@ DIRECTION Object::getDirection()
     return direction;
 }
 
-void Object::changeDirection(DIRECTION directionIn)
+void Object::changeDirection(const DIRECTION &directionIn)
 {
     direction = directionIn;
 }
@@ -66,13 +66,13 @@ ACTION Object::getAction()
         return acc;
 }
 
-void Object::changeAction(ACTION actionIn)
+void Object::changeAction(const ACTION &actionIn)
 {
     if ((nextAction != A_HIT) || (nextAction != A_DESTROY))
     {nextAction = actionIn;}
 }
 
-void Object::collision(shared_ptr<Object> objIn)
+void Object::collision(const shared_ptr<Object> objIn)
 {
     if (Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] != A_CONTINUE)
         changeAction( Object::collisionTable[ this->getType() ][ objIn.get()->getType() ] );

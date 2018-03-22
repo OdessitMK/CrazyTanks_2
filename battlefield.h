@@ -16,13 +16,13 @@ protected:
     vector< vector< shared_ptr<Object> > > field;
     void createBorders();
 public:
-    Battlefield(int heightIn, int widthIn);
+    Battlefield(const int heightIn, const int widthIn);
     int getHeight();
     int getWidth();
     void drawField();
     bool addObject(shared_ptr<Object> objIn);
-    bool moveObject(int fromX, int fromY, int whereX, int whereY);
-    void deleteObject(int objX, int objY);
+    bool moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY);
+    void deleteObject(const int &objX, const int &objY);
 };
 
 #endif // BATTLEFIELD_H

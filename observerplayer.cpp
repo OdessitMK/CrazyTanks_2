@@ -36,7 +36,7 @@ void ObserverPlayer::updateEnemyCounterDecrease()
     }
 }
 
-void ObserverPlayer::updateHealthPoints(int healthPointsIn)
+void ObserverPlayer::updateHealthPoints(const int &healthPointsIn)
 {
     healthPoints = healthPointsIn;
 }

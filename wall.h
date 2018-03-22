@@ -7,7 +7,7 @@
 class Wall : public Object
 {
 public:
-    Wall(int xIn, int yIn,  int healthPointsIn = 1, DIRECTION directionIn = UP, ACTION nextActionIn = A_STOP);
+    Wall(const int &xIn, const int &yIn, const int &healthPointsIn = 1, const DIRECTION &directionIn = UP, const ACTION &nextActionIn = A_STOP);
 };
 
 #endif // WALL_H
