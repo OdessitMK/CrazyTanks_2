@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <list>
+#include <ctime>
 
 #include "battlefield.h"
 #include "observerplayer.h"
@@ -17,6 +18,7 @@ protected:
     shared_ptr<Battlefield> battlefield;
     shared_ptr<ObserverPlayer> observer;
     InputInterface inputInterface;
+    clock_t time1, time2;
 public:
     ActiveObjects( shared_ptr<Battlefield> battlefieldIn, shared_ptr<ObserverPlayer> observerIn );
     bool nearCheck(const int &x, const int &y, const int &distance = 3);

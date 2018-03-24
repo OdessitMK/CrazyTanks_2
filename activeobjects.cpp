@@ -8,10 +8,12 @@
 #include "playertank.h"
 #include "gold.h"
 #include "bullet.h"
+#include <iostream>
 
 ActiveObjects::ActiveObjects(shared_ptr<Battlefield> battlefieldIn, shared_ptr<ObserverPlayer> observerIn):battlefield(battlefieldIn), observer(observerIn)
 {
-
+    time1 = clock();
+    time2 = clock();
 }
 
 bool ActiveObjects::nearCheck(const int &x, const int &y, const int &distance)
@@ -93,15 +95,19 @@ void ActiveObjects::setup()
                 break;
         }
     }
+    battlefield.get()->drawField();
 }
 
 void ActiveObjects::iterateActive(const bool input)
 {
-
+inputInterface.playerInput.takeInput();
+time2 = clock();
+if ((time2 - time1) > (CLOCKS_PER_SEC / 2))
+{
     auto it = listOfObjects.begin();
+    auto itt = it;
     while (it != listOfObjects.end())
     {
-        auto itt = it;
         advance( itt, 1 );
         if ( input )
         {
@@ -135,4 +141,6 @@ void ActiveObjects::iterateActive(const bool input)
         }
         it = itt;
     }
+    time1 = time2;
+}
 }

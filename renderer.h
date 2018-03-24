@@ -3,7 +3,6 @@
 
 #include "battlefield.h"
 #include "observerplayer.h"
-
 #include "ctime"
 
 class Renderer

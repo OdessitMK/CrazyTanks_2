@@ -10,7 +10,6 @@ PlayerInput::PlayerInput():action(A_STOP)
 
 ACTION PlayerInput::getAction(const shared_ptr<Object> playerTankIn)
 {
-    takeInput();
     ACTION returnAction = playerTankIn.get()->getAction();
     if ( (returnAction != A_HIT) && (returnAction != A_DESTROY) )
     {

@@ -1,6 +1,15 @@
 #include "battlefield.h"
 #include "wall.h"
 #include <iostream>
+#include <windows.h>
+
+void setCursor(const int &x, const int &y)
+{
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 
 void Battlefield::createBorders()
 {
@@ -40,48 +49,60 @@ int Battlefield::getWidth()
 
 void Battlefield::drawField()
 {
-    cout << endl;
-    for ( int i = 0; i < height; i++)
+    for ( int y = 0; y < height; y++)
     {
-        for ( int j = 0; j < width; j++)
-            if ( field[i][j] == nullptr ) cout << "  ";
-            else cout << field[i].at(j).get()->getVisualization() << field[i].at(j).get()->getVisualization(); //2 time for visualy pleasant view
-        cout << endl;
+        for ( int x = 0; x < width; x++)
+            if ( field[y][x] != nullptr )
+                drawPosition(x,y);
     }
 }
 
 bool Battlefield::addObject(shared_ptr<Object> objIn)
 {
+    bool returnBool;
     if ( (objIn.get()->getY() < height) && (objIn.get()->getX() < width) )
     {
         if (field.at( objIn.get()->getY() ).at( objIn.get()->getX() ) == nullptr )
         {
             field.at( objIn.get()->getY() ).at( objIn.get()->getX() ) = objIn;
-            return true;
+            drawPosition(objIn.get()->getX(), objIn.get()->getY());
+            returnBool = true;
         }
         else
         if ( ( objIn.get()->getType() == AI_BULLET ) || ( objIn.get()->getType() == PLAYER_BULLET ) )
+        {
             field.at( objIn.get()->getY() ).at( objIn.get()->getX() ).get()->collision( objIn );
-    }
-    return false;
+            returnBool = false;
+        } else returnBool = false;
+    }    
+    return returnBool;
 }
 
-bool Battlefield::moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY)
+void Battlefield::moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY)
 {
     if (field.at( whereY ).at( whereX ) == nullptr )
     {
         field.at( fromY ).at( fromX ).get()->move( whereX, whereY );
         field.at( whereY ).at( whereX ).swap( field.at( fromY ).at( fromX ) );
+        drawPosition(fromX, fromY);
+        drawPosition(whereX, whereY);
     }
     else
     {
        field.at( whereY ).at( whereX ).get()->collision( field.at( fromY ).at( fromX ) );
        field.at( fromY ).at( fromX ).get()->collision(field.at( whereY ).at( whereX ));
     }
-    return true;
 }
 
 void Battlefield::deleteObject(const int &objX, const int &objY)
 {
     field.at( objY ).at( objX ) = nullptr;
+    setCursor( objX*2, objY + 1);
+    cout << "  ";
+}
+
+void Battlefield::drawPosition(const int &objX, const int &objY)
+{
+    setCursor( objX*2, objY + 1);
+    cout << field[objY].at(objX).get()->getVisualization() << field[objY].at(objX).get()->getVisualization(); //2 time for visualy pleasant view
 }

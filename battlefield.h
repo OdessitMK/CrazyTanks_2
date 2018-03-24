@@ -1,9 +1,7 @@
 #ifndef BATTLEFIELD_H
 #define BATTLEFIELD_H
 
-#include <memory>
 #include <vector>
-
 #include "object.h"
 
 using namespace std;
@@ -21,8 +19,9 @@ public:
     int getWidth();
     void drawField();
     bool addObject(shared_ptr<Object> objIn);
-    bool moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY);
+    void moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY);
     void deleteObject(const int &objX, const int &objY);
+    void drawPosition(const int &objX, const int &objY);
 };
 
 #endif // BATTLEFIELD_H
