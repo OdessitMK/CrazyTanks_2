@@ -25,7 +25,7 @@ public:
     void addObject(shared_ptr<Object> objIn);
     void createStronghold();
     void setup();
-    void iterateActive(const bool input);
-
+    void iterateActive();
+    void makeAction(list<shared_ptr<Object> >::iterator &it);
 };
 #endif // ACTIVEOBJECTS_H

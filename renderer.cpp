@@ -20,9 +20,11 @@ void Renderer::DrawInterface()
     setCurs(0,0);
     timer = clock();
     cout <<"Game time: "<< (static_cast<long int>(timer)) / CLOCKS_PER_SEC / 60 << " minutes " << (static_cast<long int>(timer)) / CLOCKS_PER_SEC % 60 << " seconds";
-    //battlefield.get()->drawField();
-    setCurs(0, battlefield.get()->getHeight());
+    setCurs( 0, battlefield.get()->getHeight() );
     cout << endl << " SCORE: " << player.get()->getScore() << " HP: " << player.get()->getHealthPoints() << endl;
     if ( player.get()->getVictory() == true )
-        cout << "-----VICTORY-----" << endl;
+    {
+        setCurs( battlefield.get()->getWidth() - 8, battlefield.get()->getHeight() / 2 );
+        cout << "-----VICTORY-----";
+    }
 }

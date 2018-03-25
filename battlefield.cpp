@@ -72,37 +72,48 @@ bool Battlefield::addObject(shared_ptr<Object> objIn)
         if ( ( objIn.get()->getType() == AI_BULLET ) || ( objIn.get()->getType() == PLAYER_BULLET ) )
         {
             field.at( objIn.get()->getY() ).at( objIn.get()->getX() ).get()->collision( objIn );
+            drawPosition(objIn.get()->getX(), objIn.get()->getY());
             returnBool = false;
         } else returnBool = false;
     }    
     return returnBool;
 }
 
-void Battlefield::moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY)
+bool Battlefield::moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY)
 {
+    bool returnMove;
     if (field.at( whereY ).at( whereX ) == nullptr )
     {
         field.at( fromY ).at( fromX ).get()->move( whereX, whereY );
         field.at( whereY ).at( whereX ).swap( field.at( fromY ).at( fromX ) );
         drawPosition(fromX, fromY);
         drawPosition(whereX, whereY);
+        returnMove = true;
     }
     else
     {
        field.at( whereY ).at( whereX ).get()->collision( field.at( fromY ).at( fromX ) );
        field.at( fromY ).at( fromX ).get()->collision(field.at( whereY ).at( whereX ));
+       returnMove = false;
     }
+    return returnMove;
 }
 
 void Battlefield::deleteObject(const int &objX, const int &objY)
 {
     field.at( objY ).at( objX ) = nullptr;
-    setCursor( objX*2, objY + 1);
-    cout << "  ";
+    drawPosition(objX, objY);
 }
 
 void Battlefield::drawPosition(const int &objX, const int &objY)
 {
-    setCursor( objX*2, objY + 1);
-    cout << field[objY].at(objX).get()->getVisualization() << field[objY].at(objX).get()->getVisualization(); //2 time for visualy pleasant view
+    setCursor( objX * 2, objY + 1);
+    if ( field.at( objY ).at( objX ) == nullptr )
+    {
+        cout << "  ";
+    }
+    else
+    {
+        cout << field[objY].at(objX).get()->getVisualization() << field[objY].at(objX).get()->getVisualization(); //2 time for visualy pleasant view
+    }
 }

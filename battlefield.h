@@ -19,7 +19,7 @@ public:
     int getWidth();
     void drawField();
     bool addObject(shared_ptr<Object> objIn);
-    void moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY);
+    bool moveObject(const int &fromX, const int &fromY, const int &whereX, const int &whereY);
     void deleteObject(const int &objX, const int &objY);
     void drawPosition(const int &objX, const int &objY);
 };

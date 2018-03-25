@@ -4,8 +4,8 @@ const ACTION Object::collisionTable[6][6] = {{A_CONTINUE,A_CONTINUE,A_CONTINUE,A
                                              {A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT,A_STOP},
                                              {A_CONTINUE,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT,A_HIT},
                                              {A_CONTINUE,A_HIT,A_CONTINUE,A_CONTINUE,A_CONTINUE,A_HIT},
-                                             {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},
-                                             {A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY,A_DESTROY},};
+                                             {A_HIT,A_HIT,A_HIT,A_HIT,A_HIT,A_HIT},
+                                             {A_HIT,A_HIT,A_HIT,A_HIT,A_HIT,A_HIT},};
 
 Object::Object(const int &xIn, const int &yIn, const int &healthPointsIn, const DIRECTION &directionIn, const ACTION &nextActionIn):coordX(xIn),coordY(yIn),healthPoints(healthPointsIn),direction(directionIn),nextAction(nextActionIn)
 {

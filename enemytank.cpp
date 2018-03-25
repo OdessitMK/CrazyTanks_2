@@ -11,7 +11,7 @@ EnemyTank::EnemyTank(shared_ptr<ObserverPlayer> observerIn, const int &xIn, cons
 void EnemyTank::hit()
 {
     --healthPoints;
-    if (healthPoints < 1)
+    if ((healthPoints < 1) && ( nextAction !=A_DESTROY ))
     {
         nextAction = A_DESTROY;
         observer.get()->updateEnemyCounterDecrease();

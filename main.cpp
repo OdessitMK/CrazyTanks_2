@@ -17,9 +17,7 @@ int main()
 
     while( !observerPlayer.get()->getGameOver() )
     {
-            activeObjects.iterateActive(false);
-            renderer.DrawInterface();
-            activeObjects.iterateActive(true);
+            activeObjects.iterateActive();
             renderer.DrawInterface();
     }
     cout<< endl <<"---GAME OVER---"<< endl;

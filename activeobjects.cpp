@@ -98,49 +98,51 @@ void ActiveObjects::setup()
     battlefield.get()->drawField();
 }
 
-void ActiveObjects::iterateActive(const bool input)
+void ActiveObjects::iterateActive()
 {
 inputInterface.playerInput.takeInput();
 time2 = clock();
-if ((time2 - time1) > (CLOCKS_PER_SEC / 2))
-{
-    auto it = listOfObjects.begin();
-    auto itt = it;
-    while (it != listOfObjects.end())
+    if ((time2 - time1) > (CLOCKS_PER_SEC / 2))
     {
-        advance( itt, 1 );
-        if ( input )
+        auto it = listOfObjects.begin();
+        auto itt = it;
+        while (it != listOfObjects.end())
         {
+            advance( itt, 1 );
             if ( ( it->get()->getType() == PLAYER ) || ( it->get()->getType() == AI ) )
             {
                 it->get()->changeAction( inputInterface.getAction( *it ) );
             }
-        }
-        switch ( it->get()->getAction() )
-        {
-        case A_UP:    battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX(), it->get()->getY() - 1 ); it->get()->changeDirection(UP);
-            break;
-        case A_DOWN:  battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX(), it->get()->getY() + 1 ); it->get()->changeDirection(DOWN);
-            break;
-        case A_LEFT:  battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX() - 1, it->get()->getY() ); it->get()->changeDirection(LEFT);
-            break;
-        case A_RIGHT: battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX() + 1, it->get()->getY() ); it->get()->changeDirection(RIGHT);
-            break;
-        case A_SHOOT: { shared_ptr<Bullet> bullet( new Bullet( *it ) );
-                          this->addObject( bullet );}
-            break;
-        case A_STOP:
-            break;
-        case A_HIT: it->get()->hit();
-           break;
-        case A_DESTROY: battlefield.get()->deleteObject( it->get()->getX(), it->get()->getY() );
-                            listOfObjects.erase(it);
-            break;
-        default:
-            break;
-        }
+        makeAction(it);
         it = itt;
-    }
+        }
     time1 = time2;
+    }
 }
+
+void ActiveObjects::makeAction(list<shared_ptr<Object> >::iterator &it)
+{
+    switch ( it->get()->getAction() )
+    {
+    case A_UP:    it->get()->changeDirection(UP); if (!battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX(), it->get()->getY() - 1 ) ) makeAction(it);
+        break;
+    case A_DOWN:  it->get()->changeDirection(DOWN); if (!battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX(), it->get()->getY() + 1 ) ) makeAction(it);
+        break;
+    case A_LEFT:  it->get()->changeDirection(LEFT); if (!battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX() - 1, it->get()->getY() ) )makeAction(it);
+        break;
+    case A_RIGHT: it->get()->changeDirection(RIGHT); if (!battlefield.get()->moveObject( it->get()->getX(), it->get()->getY(), it->get()->getX() + 1, it->get()->getY() ) ) makeAction(it);
+        break;
+    case A_SHOOT: { shared_ptr<Bullet> bullet( new Bullet( *it ) );
+                      this->addObject( bullet );}
+        break;
+    case A_STOP:
+        break;
+    case A_HIT: it->get()->hit(); makeAction(it);
+       break;
+    case A_DESTROY: battlefield.get()->deleteObject( it->get()->getX(), it->get()->getY() );
+                        listOfObjects.erase(it);
+        break;
+    default:
+        break;
+    }
 }
